@@ -191,13 +191,13 @@ function menugym(){
 }
 
 //               FUNCION DE LOGIN CON INGRESO DE USUARIOS MANUALES HASTA 3 INTENTOS
-function signup(){{
+function signup(){
+    {
     let identificar = true
     let intentos = 2
     do{
         let dni = prompt("Ingrese su DNI")
         let contrasena =prompt("Ingrese su contraseña")
-        identificar=false
         if (dni === " " || contrasena === " " || isNaN(dni)){
         }
         else if (dni === "35095329" && contrasena === "12345"){
@@ -206,30 +206,31 @@ function signup(){{
         menugym()    
         }
         else if (dni === "45005333" && contrasena === "123456"){
-        alert ("El DNI y contraseña ingresada son correctas")
+        alert("El DNI y contraseña ingresada son correctas")
         identificar=false    
         menugym()    
         }
         else if (dni === "40637322" && contrasena === "1234567"){
-        alert ("El DNI y contraseña ingresada son correctas")
+        alert("El DNI y contraseña ingresada son correctas")
         identificar=false    
         menugym()    
         }
         else if (dni === "34783169" && contrasena === "1234"){
-        alert ("El DNI y contraseña ingresada son correctas")
+        alert("El DNI y contraseña ingresada son correctas")
         identificar=false
         menugym()    
         }
-        else {
-        alert ("El DNI y/o contraseña ingresada son incorrectos, le quedan "+ intentos +" intentos.")
+        else{
+        alert("El DNI y/o contraseña ingresada son incorrectos, le quedan " + intentos + " intentos.")
         intentos--
         if(intentos<0)
-        break     
+        break
         }       
     }
     while(identificar)
     if(intentos<0)
     alert("Ha superado los intentos permitidos, comuniquese con el administrador")
+    
     }
 return  
 }
@@ -239,49 +240,11 @@ alert("Bienvenido a Force GYM")
 
 //               CONFIRMACION DE ATLETA REGISTRADO
 let registro = confirm("Atleta si se encuentra registrado aprete Aceptar, de lo contrario ingrese Cancelar")
-debugger
+
 //                PROCESO DE APLICACION WEB   
 if (registro){
-    let identificar = true
-    let intentos = 2
-    do{
-        let dni = prompt("Ingrese su DNI")
-        let contrasena =prompt("Ingrese su contraseña")
-        identificar=false
-        if (dni === " " || contrasena === " " || isNaN(dni)){
-        }
-        else if (dni === "35095329" && contrasena === "12345"){
-        alert ("El DNI y contraseña ingresada son correctas")
-        identificar=false    
-        menugym()    
-        }
-        else if (dni === "45005333" && contrasena === "123456"){
-        alert ("El DNI y contraseña ingresada son correctas")
-        identificar=false    
-        menugym()    
-        }
-        else if (dni === "40637322" && contrasena === "1234567"){
-        alert ("El DNI y contraseña ingresada son correctas")
-        identificar=false    
-        menugym()    
-        }
-        else if (dni === "34783169" && contrasena === "1234"){
-        alert ("El DNI y contraseña ingresada son correctas")
-        identificar=false
-        menugym()    
-        }
-        else {
-        alert ("El DNI y/o contraseña ingresada son incorrectos, le quedan "+ intentos +" intentos.")
-        intentos--
-        /*if(intentos<0)
-        break */    
-        }       
-    }
-    while(identificar)
-    if(intentos<0)
-    alert("Ha superado los intentos permitidos, comuniquese con el administrador")
-    }
-
+    signup()
+}
 else{
     alert("Atleta primero debe registrarse para continuar")
     agregarAtletas()
