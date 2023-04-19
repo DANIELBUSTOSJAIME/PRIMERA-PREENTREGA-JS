@@ -48,17 +48,17 @@ function agregarAtletas (){
         fechanacAtleta = prompt("Ingrese su fecha de nacimiento (DD/MM/AAAA)")
         dniAtleta = prompt("Ingrese su DNI"); 
     }
-    let contrasenafinal = newcontrasena = prompt("Ingrese una contraseña")
-    let recontrasena = prompt("Ingrese nuevamente su contraseña")
-    if (newcontrasena === "" || recontrasena === ""){
+    let newcontrasena = prompt("Ingrese una contraseña")
+    let contrasenafinal = prompt("Ingrese nuevamente su contraseña")
+    if (newcontrasena === "" || contrasenafinal === ""){
         return
     }
-    else if(newcontrasena === recontrasena){
+    else if(newcontrasena === contrasenafinal){
     }
     else{
     alert("Las contraseñas ingresadas no son identicas, vuelva a ingresarlas")
-        contrasenafinal = newcontrasena = prompt("Ingrese una contraseña")
-        recontrasena = prompt("Ingrese nuevamente su contraseña")
+        newcontrasena = prompt("Ingrese una contraseña")
+        contrasenafinal = prompt("Ingrese nuevamente su contraseña")
     }
     let atleta = new Atletas (nombreAtleta, apellidoAtleta, edadAtleta, fechanacAtleta, dniAtleta, contrasenafinal)
     if (registroAtletas.some((dni) => dni.dniAtleta === atleta.dniAtleta)) {
@@ -74,22 +74,15 @@ function agregarAtletas (){
 function menugym(){
     
     let lista = prompt ("Bienvenido atleta, que desea realizar? \n1- Reservar turnos; \n2- Ver creditos disponibles; \n3- Vencimiento de Abono; \n4- Anular Reserva; \n5- Renovar abono; \n6- Cerrar sesión")
-    let vencimientocreditos = "15/05/2023"
+    let vencimientocreditos = "2023-05-15"
     let totalcreditos = 0
     let creditosdisponibles = 0
     let diareserva
     let cancelareserva 
-    
-    // Profe trate de incluir la función de que la reserva ingresada no sea inferior a la fecha actual con Date usando el codigo siguiente pero no tuve suerte, me arroja un error de que la fecha , no se si estoy haciendo algo mal o hay otra función especifica que no estoy viendo o si debo esperar a la clase de librerias para usar calculos con fechas ya que una funcionalidad que me gustaria agregar es que al comprar el abono automaticamente a la fecha de vencimiento abono se le incremente el tipo de abono comprado (mensual, trimestral, semestral o anual)
-    /*
-    let fechaactual = new Date()
-    let vencimientocreditos = new Date ("May, 15, 2023")
-    console.log(vencimientocreditos.toLocaleDateString)
-    console.log(fechaactual.toLocaleDateString) 
-    vencimientocreditos= vencimientocreditos.toLocaleDateString
-    fechaactual= fechaactual.toLocaleDateString
-    */
-    
+    const fechaReserva = new Date(diareserva);
+    const fechaActual = new Date();
+    const fechaCancelacion = new Date (cancelareserva);
+    console.log(fechaActual)
     while (lista != "6"){
         {
     
@@ -99,15 +92,10 @@ function menugym(){
             alert("Usted no cuenta con creditos disponibles, ingrese en la opción 5- Renovar abono.")   
         }
         else{
-        diareserva = prompt ("Ingrese el dia que quiere asistir (DD/MM/AAAA)");
-        while(diareserva > vencimientocreditos || diareserva === "" || diareserva === null){
+        diareserva = prompt ("Ingrese el dia que quiere asistir (AAAA-MM-DD)");
+        while(diareserva > vencimientocreditos || diareserva === "" || diareserva === null || fechaReserva < fechaActual){
         diareserva = prompt("La fecha de reserva es incorrecta, ingrese una fecha valida")
         }
-        /*diareserva = prompt ("Ingrese el dia que quiere asistir (DD/MM/AAAA)");
-        while(diareserva.toLocaleDateString > vencimientocreditos || diareserva === "" || diareserva === null || diareserva.toLocaleDateString < fechaactual){
-        diareserva = prompt("La fecha de reserva es incorrecta, ingrese una fecha valida")
-        diareserva= diareserva.toLocaleDateString
-    }   */
         let horareserva = prompt ("Ingrese la hora que desea asistir (DE 8 A 20)")
         while (horareserva < 8 || horareserva > 20 || horareserva === null){
         horareserva = prompt("Ha ingresado un horario fuera del establecido, ingrese nuevamente")
@@ -130,8 +118,8 @@ function menugym(){
 
     //                      OPCION 4 - CANCELACION DE RESERVA EFECTUADA
     else if (lista =="4"){
-        cancelareserva = prompt ("Ingrese el dia de la reserva que quiere cancelar (DD/MM/AAAA)")
-        while(cancelareserva > vencimientocreditos || cancelareserva === null){
+        cancelareserva = prompt ("Ingrese el dia de la reserva que quiere cancelar (AAAA-MM-DD)")
+        while(cancelareserva > vencimientocreditos || cancelareserva === null || fechaCancelacion < fechaActual){
         cancelareserva = prompt("La fecha de la reserva que quiere cancelar es incorrecta, ingrese una fecha valida")
         }
         horareserva = prompt ("Ingrese el horario de la clase que desea cancelar")
